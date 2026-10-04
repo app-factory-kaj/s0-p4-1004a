@@ -1,0 +1,75 @@
+openapi: 3.0.3
+info:
+  title: Greeter API
+  version: 0.1.0
+  description: A small reference service that returns a JSON greeting for a given name.
+servers:
+  - url: /
+paths:
+  /hello:
+    get:
+      operationId: getGreeting
+      summary: Get a greeting for a name, or a generic greeting when name is omitted
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          description: The name to greet
+      responses:
+        '200':
+          description: The greeting
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Greeting'
+        '500':
+          description: Unexpected server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /health:
+    get:
+      operationId: getHealth
+      summary: Liveness check
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status:
+                    type: string
+components:
+  schemas:
+    Greeting:
+      type: object
+      required: [message]
+      properties:
+        name:
+          type: string
+          description: The name that was greeted, when provided
+        message:
+          type: string
+          description: The greeting text, e.g. "Hello, World!"
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: integer
+          description: HTTP or application error code
+        message:
+          type: string
+          description: short human-readable label
+        description:
+          type: string
+          description: detailed explanation
+        moreInfo:
+          type: string
+          description: URI to documentation
