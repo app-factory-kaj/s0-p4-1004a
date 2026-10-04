@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-Teams building new components on this platform need a minimal, known-good example of a Go HTTP service to copy conventions from — project layout, request handling, and response shape. Without a small reference service, each new Go component re-derives these conventions from scratch, leading to inconsistency across the organization.
+Teams building new components on this platform need a minimal, known-good example of a Go HTTP service to copy conventions from — project layout, request handling, and response shape. Without a small reference service, each new Go component re-derives these conventions from scratch, leading to inconsistency across the organization. E2E marker s0p4-1004a.
 
 ## Solution
 
